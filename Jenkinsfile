@@ -19,6 +19,8 @@ pipeline{
 		    steps {
 			    sh 'docker run -d -p 5000:3306 --name mysql-$GIT_COMMIT -e MYSQL_ROOT_PASSWORD=root mysql'  
 			    sh 'sleep 30'
+		    }
+	    }
 
         stage('maven location') {
              steps {

@@ -3,6 +3,8 @@ pipeline{
      environment {
 		DOCKERHUB_CREDENTIALS = credentials('DockerHub')
 	        GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD')
+	        PORT_mysql= 5000
+	        PORT_app= 9192
 	}
     stages {
 	  /*  stage('name'){
@@ -15,12 +17,12 @@ pipeline{
 	    }*/
     
     
-// 	    stage ('mysql run') {
-// 		    steps {
-// 			    sh 'docker run -d -p 5000:3306 --name mysql-$GIT_COMMIT -e MYSQL_ROOT_PASSWORD=root mysql'  
-// 			    sh 'sleep 30'
-// 		    }
-// 	    }
+	    stage ('mysql run') {
+		    steps {
+			    sh 'docker run -d -p $PORT_mysql:3306 --net static --ip 10.11.0.12 --name mysql-$GIT_COMMIT -e MYSQL_ROOT_PASSWORD=root mysql'  
+			    sh 'sleep 30'
+		    }
+	    }
 
         stage('maven location') {
              steps {
@@ -85,7 +87,7 @@ pipeline{
 	     steps{
 // 		 sh 'docker run -d -p 5000:3306 --name mysql-$GIT_COMMIT -e MYSQL_ROOT_PASSWORD=root mysql'  
 // 		 sh 'sleep 30'    
-		 sh 'docker run -d -p 9192:8080 --name db-application-$GIT_COMMIT 8485012281/db-application:$GIT_COMMIT'
+		 sh 'docker run -d -p $PORT_app:8080 --net static --ip 10.11.0.13 --name db-application-$GIT_COMMIT 8485012281/db-application:$GIT_COMMIT'
 		 sh 'sleep 30'
 		 sh 'docker ps'
 	     }

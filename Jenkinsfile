@@ -5,6 +5,7 @@ pipeline{
 	        GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD')
 	        PORT_mysql= 5000
 	        PORT_app= 9192
+	        fname= "demo"
 	}
     stages {
 	  /*  stage('name'){
@@ -60,7 +61,7 @@ pipeline{
 	
 	 stage('docker build'){
 	     steps{
-		 sh'docker build -t 8485012281/db-application:$GIT_COMMIT .'
+		     sh'docker build --build-arg file-name="${fname}" -t 8485012281/db-application:$GIT_COMMIT .'
 		// sh 'docker build -t spring-img-jar --build-arg dokcerjob=$JOB_NAME .'
 	     }
 	 } 

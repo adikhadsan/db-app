@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: true
+  tasks:
+    - name: docker login      
+      docker_login:
+        username: "{{ uname }}"
+        password: "{{ passwd }}"
+

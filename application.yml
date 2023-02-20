@@ -1,0 +1,21 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: true
+  tasks:
+ 
+    - name: Log into DockerHub
+      shell: |
+        whoami
+#        docker login -u 8485012281 -p Aditya@123
+    - name: Pull default Docker image
+      docker_container:
+        image: "{{ image_name }}"
+        name: app
+        state: started
+        networks:
+        - name: my_network
+          ipv4_address: 10.11.0.13  
+    # auto_remove: true
+        ports:
+          - "{{port}}:8080"

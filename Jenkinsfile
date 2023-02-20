@@ -44,20 +44,20 @@ pipeline{
 	    }
 	}
 
-        stage('maven location') {
-             steps {
+//         stage('maven location') {
+//              steps {
             
-                sh'''
-                  pwd
-                  cd /var/lib/jenkins/workspace/${JOB_NAME}/
-                  ls
-                  mvn clean
-                  mvn install
+//                 sh'''
+//                   pwd
+//                   cd /var/lib/jenkins/workspace/${JOB_NAME}/
+//                   ls
+//                   mvn clean
+//                   mvn install
               
               
-                  '''
-             }
-         }
+//                   '''
+//              }
+//          }
 	
 // 	stage('	Copy jar file'){
 // 	     steps{

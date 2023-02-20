@@ -6,6 +6,7 @@ pipeline{
 	        PORT_mysql= 5000
 	        PORT_app= 9192
 	        fname= "demo"
+	        docker= sh (script: 'docker --version',returnStdout: true)
 	}
     stages {
 	  /*  stage('name'){
@@ -16,7 +17,12 @@ pipeline{
 	                 //   sh'echo $job'
 		    }
 	    }*/
-    
+       stage('docker check on remote ') {
+	       when { environment name: 'docker', value: '' }
+	       steps {
+		       sh 'ansible-playbook docker-playbook.yml'
+	       }
+       }   
     
 	    stage ('mysql run') {
 		    steps {

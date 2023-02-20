@@ -27,7 +27,7 @@ pipeline{
 	   
 	 stage('docker login on remote machine'){
 		 steps{
-			 sh 'ansible-playbook login.yml --extra-vars "uname=8485012281 passwd=Aditya@123"
+			 sh 'ansible-playbook login.yml --extra-vars "uname=8485012281 passwd=Aditya@123"'
 		 }
 	 }   
     
@@ -102,7 +102,7 @@ pipeline{
 	    
 	 stage('docker run on remote'){
 	     steps{
-		 ansible-playbook application.yml --extra-vars "image_name=8485012281/db-application:$GIT_COMMIT port=9192" 
+		 sh 'ansible-playbook application.yml --extra-vars "image_name=8485012281/db-application:$GIT_COMMIT port=9192"' 
 // 		 sh 'docker run -d -p $PORT_app:8080 --net static --ip 10.11.0.13 --name db-application-$GIT_COMMIT 8485012281/db-application:$GIT_COMMIT'
 		 sh 'sleep 30'
 		 sh 'docker ps'

@@ -35,7 +35,7 @@ pipeline{
 	    steps {
 // 		    sh 'docker run -d -p $PORT_mysql:3306 --net static --ip 10.11.0.12 --name mysql-$GIT_COMMIT -e MYSQL_ROOT_PASSWORD=root mysql'  
 // 		    sh 'sleep 30'
-		    sh 'ansible-playbook container-playbook.yml --extra-vars “image_name=mysql port=5000 passwd=root”'
+		    sh 'ansible-playbook container-playbook.yml --extra-vars "image_name=mysql port=5000 passwd=root"'
 	    }
 	}
 

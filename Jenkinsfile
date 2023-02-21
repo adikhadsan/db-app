@@ -11,7 +11,7 @@ pipeline{
 	        DB_IMG= 'mysql'
 	        MYSQL_PASS= 'root'
 	        MYSQL_PORT= 5000
-	        docker=$(sshpass -p 's1' ssh vboxuser@192.168.56.102 "docker --version")
+	        docker=$(sshpass -p s1 ssh vboxuser@192.168.56.102 docker --version)
      }
     stages {
 	  /*  stage('name'){

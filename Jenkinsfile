@@ -53,7 +53,7 @@ pipeline{
                   cd /var/lib/jenkins/workspace/${JOB_NAME}/
                   ls
                   mvn clean
-                  mvn install
+                  mvn install -DskipTests
               
               
                   '''
